@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4a90e2">
+    <meta name="description" content="A clean, minimalist calendar application with event management">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="512.png">
+    <link rel="apple-touch-icon" href="192.png">
+    <title>Calendar - Main</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto:wght@400;500;600&family=Open+Sans:wght@400;500;600&family=Lato:wght@400;500;600&family=Montserrat:wght@400;500;600&family=Poppins:wght@400;500;600&family=Raleway:wght@400;500;600&family=Source+Sans+Pro:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-title">Calendar</h1>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active">Calendar</a>
+                <a href="events.html" class="nav-link">Events</a>
+                <a href="settings.html" class="nav-link">Settings</a>
+                <a href="google-api.html" class="nav-link">Google API</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <div class="calendar-header">
+            <button id="prevMonth" class="nav-button">‹</button>
+            <h2 id="currentMonthYear"></h2>
+            <button id="nextMonth" class="nav-button">›</button>
+        </div>
+
+        <div class="calendar-grid">
+            <div class="calendar-weekdays">
+                <div class="weekday">Sun</div>
+                <div class="weekday">Mon</div>
+                <div class="weekday">Tue</div>
+                <div class="weekday">Wed</div>
+                <div class="weekday">Thu</div>
+                <div class="weekday">Fri</div>
+                <div class="weekday">Sat</div>
+            </div>
+            <div id="calendarDays" class="calendar-days"></div>
+        </div>
+
+        <div id="eventModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3 id="modalDate"></h3>
+                <div id="modalEvents"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+    <script src="calendar.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then((registration) => {
+                        console.log('Service Worker registered:', registration);
+                    })
+                    .catch((error) => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>

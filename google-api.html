@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4a90e2">
+    <meta name="description" content="Connect your Google Calendar">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="512.png">
+    <link rel="apple-touch-icon" href="192.png">
+    <title>Google Calendar API - Calendar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto:wght@400;500;600&family=Open+Sans:wght@400;500;600&family=Lato:wght@400;500;600&family=Montserrat:wght@400;500;600&family=Poppins:wght@400;500;600&family=Raleway:wght@400;500;600&family=Source+Sans+Pro:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://accounts.google.com/gsi/client"></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-title">Calendar</h1>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Calendar</a>
+                <a href="events.html" class="nav-link">Events</a>
+                <a href="settings.html" class="nav-link">Settings</a>
+                <a href="google-api.html" class="nav-link active">Google API</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <div class="google-api-container">
+            <h2>Google Calendar Integration</h2>
+
+            <div class="api-info">
+                <p>Connect your Google Calendar to sync events automatically.</p>
+                <p class="info-text">You'll need to:</p>
+                <ol>
+                    <li>Create a project in Google Cloud Console</li>
+                    <li>Enable the Google Calendar API</li>
+                    <li>Create OAuth 2.0 credentials</li>
+                    <li>Enter your Client ID below</li>
+                </ol>
+            </div>
+
+            <div class="api-form-section">
+                <div class="form-group">
+                    <label for="clientId">Google Client ID</label>
+                    <input type="text" id="clientId" placeholder="Enter your Google Client ID">
+                    <small>This will be stored locally in your browser</small>
+                </div>
+
+                <button id="authorizeButton" class="auth-button" disabled>Authorize Google Calendar</button>
+                <button id="signoutButton" class="signout-button" style="display: none;">Sign Out</button>
+            </div>
+
+            <div id="statusMessage" class="status-message"></div>
+
+            <div class="sync-section">
+                <h3>Sync Options</h3>
+                <div class="sync-options">
+                    <label>
+                        <input type="checkbox" id="autoSync" checked>
+                        Auto-sync every hour
+                    </label>
+                    <label>
+                        <input type="checkbox" id="syncPastEvents">
+                        Include past events
+                    </label>
+                    <label>
+                        <input type="checkbox" id="syncFutureEvents" checked>
+                        Include future events
+                    </label>
+                </div>
+                <button id="syncNow" class="sync-button" disabled>Sync Now</button>
+            </div>
+
+            <div id="syncStatus" class="sync-status"></div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+    <script src="google-api.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then((registration) => {
+                        console.log('Service Worker registered:', registration);
+                    })
+                    .catch((error) => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4a90e2">
+    <meta name="description" content="Manage your calendar events">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="512.png">
+    <link rel="apple-touch-icon" href="192.png">
+    <title>Events - Calendar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto:wght@400;500;600&family=Open+Sans:wght@400;500;600&family=Lato:wght@400;500;600&family=Montserrat:wght@400;500;600&family=Poppins:wght@400;500;600&family=Raleway:wght@400;500;600&family=Source+Sans+Pro:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-title">Calendar</h1>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Calendar</a>
+                <a href="events.html" class="nav-link active">Events</a>
+                <a href="settings.html" class="nav-link">Settings</a>
+                <a href="google-api.html" class="nav-link">Google API</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <div class="events-container">
+            <h2>Add New Event</h2>
+            <form id="eventForm" class="event-form">
+                <div class="form-group">
+                    <label for="eventTitle">Event Title</label>
+                    <input type="text" id="eventTitle" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventDate">Date</label>
+                    <input type="date" id="eventDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventTime">Time (Optional)</label>
+                    <input type="time" id="eventTime">
+                </div>
+
+                <div class="form-group">
+                    <label for="eventType">Event Type</label>
+                    <select id="eventType" required>
+                        <option value="personal">Personal</option>
+                        <option value="work">Work</option>
+                        <option value="family">Family</option>
+                        <option value="health">Health</option>
+                        <option value="social">Social</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventPriority">Priority</label>
+                    <select id="eventPriority">
+                        <option value="low">Low</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventDescription">Description (Optional)</label>
+                    <textarea id="eventDescription" rows="4"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventLocation">Location (Optional)</label>
+                    <input type="text" id="eventLocation">
+                </div>
+
+                <div class="form-group">
+                    <label for="eventReminder">Reminder</label>
+                    <select id="eventReminder">
+                        <option value="none">None</option>
+                        <option value="15min">15 minutes before</option>
+                        <option value="30min">30 minutes before</option>
+                        <option value="1hour">1 hour before</option>
+                        <option value="1day">1 day before</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-button">Add Event</button>
+            </form>
+
+            <div class="events-list-section">
+                <h2>Your Events</h2>
+                <div id="eventsList" class="events-list"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+    <script src="events.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then((registration) => {
+                        console.log('Service Worker registered:', registration);
+                    })
+                    .catch((error) => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>

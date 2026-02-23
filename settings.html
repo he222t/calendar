@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4a90e2">
+    <meta name="description" content="Customize your calendar settings">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="512.png">
+    <link rel="apple-touch-icon" href="192.png">
+    <title>Settings - Calendar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto:wght@400;500;600&family=Open+Sans:wght@400;500;600&family=Lato:wght@400;500;600&family=Montserrat:wght@400;500;600&family=Poppins:wght@400;500;600&family=Raleway:wght@400;500;600&family=Source+Sans+Pro:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-title">Calendar</h1>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Calendar</a>
+                <a href="events.html" class="nav-link">Events</a>
+                <a href="settings.html" class="nav-link active">Settings</a>
+                <a href="google-api.html" class="nav-link">Google API</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <div class="settings-container">
+            <h2>Customize Your Calendar</h2>
+
+            <section class="settings-section">
+                <h3>Color Palette</h3>
+                <div class="color-palettes">
+                    <div class="palette-option" data-palette="default">
+                        <div class="palette-preview">
+                            <div class="palette-color" style="background: #4a90e2;"></div>
+                            <div class="palette-color" style="background: #7b68ee;"></div>
+                            <div class="palette-color" style="background: #50c878;"></div>
+                        </div>
+                        <span>Default</span>
+                    </div>
+                    <div class="palette-option" data-palette="dark">
+                        <div class="palette-preview">
+                            <div class="palette-color" style="background: #2c3e50;"></div>
+                            <div class="palette-color" style="background: #34495e;"></div>
+                            <div class="palette-color" style="background: #7f8c8d;"></div>
+                        </div>
+                        <span>Dark</span>
+                    </div>
+                    <div class="palette-option" data-palette="warm">
+                        <div class="palette-preview">
+                            <div class="palette-color" style="background: #e74c3c;"></div>
+                            <div class="palette-color" style="background: #f39c12;"></div>
+                            <div class="palette-color" style="background: #e67e22;"></div>
+                        </div>
+                        <span>Warm</span>
+                    </div>
+                    <div class="palette-option" data-palette="cool">
+                        <div class="palette-preview">
+                            <div class="palette-color" style="background: #3498db;"></div>
+                            <div class="palette-color" style="background: #1abc9c;"></div>
+                            <div class="palette-color" style="background: #9b59b6;"></div>
+                        </div>
+                        <span>Cool</span>
+                    </div>
+                    <div class="palette-option" data-palette="pastel">
+                        <div class="palette-preview">
+                            <div class="palette-color" style="background: #ffb3ba;"></div>
+                            <div class="palette-color" style="background: #bae1ff;"></div>
+                            <div class="palette-color" style="background: #baffc9;"></div>
+                        </div>
+                        <span>Pastel</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="settings-section">
+                <h3>Custom Colors</h3>
+                <div class="custom-colors">
+                    <div class="color-picker-group">
+                        <label>Primary Color</label>
+                        <input type="color" id="primaryColor" value="#4a90e2">
+                    </div>
+                    <div class="color-picker-group">
+                        <label>Secondary Color</label>
+                        <input type="color" id="secondaryColor" value="#7b68ee">
+                    </div>
+                    <div class="color-picker-group">
+                        <label>Accent Color</label>
+                        <input type="color" id="accentColor" value="#50c878">
+                    </div>
+                    <div class="color-picker-group">
+                        <label>Background Color</label>
+                        <input type="color" id="backgroundColor" value="#ffffff">
+                    </div>
+                    <div class="color-picker-group">
+                        <label>Text Color</label>
+                        <input type="color" id="textColor" value="#333333">
+                    </div>
+                </div>
+            </section>
+
+            <section class="settings-section">
+                <h3>Font Family</h3>
+                <select id="fontFamily" class="font-selector">
+                    <option value="'Inter', sans-serif">Inter</option>
+                    <option value="'Roboto', sans-serif">Roboto</option>
+                    <option value="'Open Sans', sans-serif">Open Sans</option>
+                    <option value="'Lato', sans-serif">Lato</option>
+                    <option value="'Montserrat', sans-serif">Montserrat</option>
+                    <option value="'Poppins', sans-serif">Poppins</option>
+                    <option value="'Raleway', sans-serif">Raleway</option>
+                    <option value="'Source Sans Pro', sans-serif">Source Sans Pro</option>
+                </select>
+            </section>
+
+            <section class="settings-section">
+                <h3>Font Size</h3>
+                <div class="font-size-control">
+                    <input type="range" id="fontSize" min="12" max="20" value="16">
+                    <span id="fontSizeValue">16px</span>
+                </div>
+            </section>
+
+            <section class="settings-section">
+                <h3>Calendar View</h3>
+                <div class="view-options">
+                    <label>
+                        <input type="checkbox" id="showWeekends" checked>
+                        Show Weekends
+                    </label>
+                    <label>
+                        <input type="checkbox" id="showHolidays" checked>
+                        Show Public Holidays
+                    </label>
+                    <label>
+                        <input type="checkbox" id="weekStartMonday">
+                        Week Starts on Monday
+                    </label>
+                </div>
+            </section>
+
+            <div class="settings-actions">
+                <button id="saveSettings" class="save-button">Save Settings</button>
+                <button id="resetSettings" class="reset-button">Reset to Default</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then((registration) => {
+                        console.log('Service Worker registered:', registration);
+                    })
+                    .catch((error) => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>
